@@ -27,7 +27,7 @@ body{font-family:'Jost',sans-serif;background:var(--cream);color:var(--text);ove
 
 /* ── TICKER ── */
 .ticker-wrap{background:linear-gradient(90deg,var(--pink-deep),var(--brown-mid),var(--pink-deep));color:#fff;padding:9px 0;overflow:hidden;z-index:300;position:relative}
-.ticker-inner{display:flex;white-space:nowrap;animation:tick 34s linear infinite;will-change:transform}
+.ticker-inner{display:flex;white-space:nowrap;animation:tick 18s linear infinite;will-change:transform}
 .ticker-inner span{display:inline-block;padding:0 2.4rem;font-size:.78rem;font-weight:500;letter-spacing:.06em}
 .ticker-inner span::before{content:'✦';margin-right:.7rem;opacity:.55}
 @keyframes tick{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
@@ -35,7 +35,7 @@ body{font-family:'Jost',sans-serif;background:var(--cream);color:var(--text);ove
 /* ── NAV — LIQUID GLASS ── */
 nav{
   position:sticky;top:0;z-index:200;
-  padding:.85rem 2rem;
+  padding:.5rem 2rem;
   display:flex;align-items:center;justify-content:space-between;
   background:rgba(255,255,255,0.08);
   backdrop-filter:blur(22px) saturate(180%);
@@ -52,17 +52,11 @@ nav.scrolled{
   border-bottom-color: rgba(212,100,122,0.14);
   box-shadow: 0 2px 20px rgba(44,20,14,.08);
 }
-.nav-brand{
-  display:flex;align-items:center;gap:9px;
-  font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:700;
-  color:#fff;
-  text-shadow:0 1px 8px rgba(0,0,0,.25);
-  transition:color .3s,text-shadow .3s;
-}
-nav.scrolled .nav-brand{
-  color:var(--pink-deep);
-  text-shadow:none;
-}
+.nav-brand{display:flex;align-items:center;gap:9px;text-decoration:none;cursor:default}
+.nav-logo{height:64px;width:auto;max-width:200px;object-fit:contain;display:block}
+.nav-logo-fallback{display:none;align-items:center;gap:9px;font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:700;color:#fff;text-shadow:0 1px 8px rgba(0,0,0,.25);transition:color .3s,text-shadow .3s}
+nav.scrolled .nav-logo-fallback{color:var(--pink-deep);text-shadow:none}
+@media(max-width:640px){.nav-logo{height:52px}.nav-logo-fallback{font-size:1.15rem}}
 .nav-links{display:flex;align-items:center;gap:1.4rem}
 .nav-links a{
   text-decoration:none;font-size:.85rem;font-weight:500;
@@ -134,7 +128,7 @@ nav.scrolled .nav-hamburger span{background:var(--pink-deep)}
   box-shadow:0 4px 18px rgba(37,211,102,.3);
 }
 @media(max-width:640px){
-  nav{padding:.75rem 1rem}
+  nav{padding:.35rem 1rem}
   .nav-links a{display:none}
   .nav-links .cart-btn{display:flex}
   .nav-hamburger{display:flex}
@@ -272,13 +266,13 @@ section{padding:5rem 1.5rem}
 /* ── MOBILE PRODUCT GRID ── */
 @media(max-width:600px){
   .products-grid{grid-template-columns:repeat(2,1fr);gap:.75rem}
-  .product-img{height:160px}
-  .product-body{padding:.8rem .8rem .85rem}
-  .product-body h3{font-size:.95rem;line-height:1.25}
-  .product-price{font-size:.82rem;margin-bottom:.2rem}
-  .product-desc{font-size:.73rem;line-height:1.5;margin-bottom:.7rem;
-    display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-  .add-cart-btn{padding:9px 8px;font-size:.78rem;gap:4px}
+  .product-img{height:150px}
+  .product-body{padding:.75rem .75rem .8rem;display:flex;flex-direction:column}
+  .product-body h3{font-size:.9rem;line-height:1.25}
+  .product-price{font-size:.8rem;margin-bottom:.18rem}
+  .product-desc{font-size:.71rem;line-height:1.48;margin-bottom:.6rem;
+    display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;flex:1}
+  .add-cart-btn{padding:9px 6px;font-size:.75rem;gap:3px;flex-shrink:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:block;text-align:center}
 }
 @media(max-width:360px){
   .products-grid{grid-template-columns:1fr}
@@ -381,7 +375,7 @@ section{padding:5rem 1.5rem}
 .qty-num{font-size:.85rem;font-weight:600;min-width:18px;text-align:center}
 .rm-btn{background:none;border:none;cursor:pointer;color:var(--muted2);font-size:.74rem;margin-left:auto;padding:2px;transition:color .15s}
 .rm-btn:hover{color:var(--pink-deep)}
-.cart-foot{padding:1rem 1.5rem;border-top:1px solid #f0ddd5}
+.cart-foot{padding:1rem 1.5rem;border-top:1px solid #f0ddd5;padding-bottom:max(1rem,env(safe-area-inset-bottom,1rem))}
 .addr-section{margin-bottom:.7rem}
 .addr-label{display:block;font-size:.7rem;font-weight:600;text-transform:uppercase;letter-spacing:.09em;color:var(--muted);margin-bottom:.28rem}
 .addr-row{display:flex;gap:6px}
@@ -494,6 +488,7 @@ section{padding:5rem 1.5rem}
 
 /* ── FOOTER ── */
 footer{background:var(--brown);color:#f9e8df;text-align:center;padding:3.5rem 1.5rem}
+.footer-logo{height:110px;width:auto;margin:0 auto 1rem;display:block;filter:drop-shadow(0 4px 16px rgba(0,0,0,.35))}
 footer h2{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:700;margin-bottom:.4rem;color:var(--pink)}
 footer>p{font-size:.88rem;opacity:.6;margin-bottom:1.5rem;line-height:1.75}
 .footer-wa{display:inline-flex;align-items:center;gap:10px;background:var(--wa);color:#fff;border:none;border-radius:999px;padding:13px 30px;font-weight:600;font-size:.93rem;cursor:pointer;transition:transform .2s,opacity .2s;font-family:'Jost',sans-serif;box-shadow:0 4px 18px rgba(37,211,102,.28)}
@@ -510,10 +505,10 @@ footer>p{font-size:.88rem;opacity:.6;margin-bottom:1.5rem;line-height:1.75}
 
 /* ── CART SIDEBAR MOBILE ── */
 @media(max-width:500px){
-  .cart-sidebar{width:100vw}
+  .cart-sidebar{width:100vw;height:100dvh}
   .cart-head{padding:1rem 1.1rem}
   .cart-body{padding:.7rem 1rem}
-  .cart-foot{padding:.85rem 1rem}
+  .cart-foot{padding:.85rem 1rem;padding-bottom:max(.85rem,env(safe-area-inset-bottom,.85rem))}
 }
 </style>
 </head>
@@ -522,7 +517,10 @@ footer>p{font-size:.88rem;opacity:.6;margin-bottom:1.5rem;line-height:1.75}
 <div class="ticker-wrap"><div class="ticker-inner" id="ticker"></div></div>
 
 <nav id="main-nav">
-  <div class="nav-brand">🎂 Cake Fantasy</div>
+<div class="nav-brand">
+    <img src="images/logo.png" alt="Cake Fantasy" class="nav-logo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+    <span class="nav-logo-fallback">🎂 Cake Fantasy</span>
+  </div>
   <div class="nav-links">
     <a href="#menu">Menu</a>
     <a href="#deals">Deals</a>
@@ -582,6 +580,7 @@ footer>p{font-size:.88rem;opacity:.6;margin-bottom:1.5rem;line-height:1.75}
 </section>
 
 <footer id="contact">
+  <img src="images/logo.png" alt="Cake Fantasy" class="footer-logo" onerror="this.style.display='none'">
   <h2>Order Now</h2>
   <p>Lahore only · Fresh home-made with love · WhatsApp orders only<br>Order a day ahead for best results!</p>
   <button class="footer-wa" id="footer-wa">
@@ -904,6 +903,57 @@ function goTo(n){
 document.getElementById('prev-btn').onclick=function(){goTo(cur-1);};
 document.getElementById('next-btn').onclick=function(){goTo(cur+1);};
 autoT=setInterval(function(){goTo(cur+1);},5500);
+
+/* ── SWIPE DOWN TO CLOSE bottom sheets ── */
+(function(){
+  var sheets=[
+    {sheet:document.getElementById('prod-sheet'),  close:function(){closeProdSheet();}},
+    {sheet:document.getElementById('occ-sheet'),   close:function(){closeOccSheet();}},
+    {sheet:document.getElementById('deal-sheet'),  close:function(){closeDealSheet();}}
+  ];
+  sheets.forEach(function(s){
+    var el=s.sheet;
+    var startY=0,startScroll=0,dragging=false,currentY=0;
+    function onStart(clientY){
+      startY=clientY;
+      startScroll=el.scrollTop;
+      dragging=true;currentY=clientY;
+      el.style.transition='none';
+    }
+    function onMove(clientY){
+      if(!dragging)return;
+      currentY=clientY;
+      var dy=clientY-startY;
+      // only allow drag-down when sheet is scrolled to top
+      if(el.scrollTop<=0&&dy>0){
+        el.style.transform='translateY('+Math.min(dy,260)+'px)';
+      }
+    }
+    function onEnd(){
+      if(!dragging)return;
+      dragging=false;
+      el.style.transition='';
+      var dy=currentY-startY;
+      if(el.scrollTop<=0&&dy>80){
+        el.style.transform='';
+        s.close();
+      } else {
+        el.style.transform='';
+      }
+    }
+    /* touch */
+    el.addEventListener('touchstart',function(e){onStart(e.touches[0].clientY);},{passive:true});
+    el.addEventListener('touchmove',function(e){onMove(e.touches[0].clientY);},{passive:true});
+    el.addEventListener('touchend',onEnd,{passive:true});
+    /* mouse (for desktop testing) */
+    var handle=el.querySelector('.bsheet-handle');
+    if(handle){
+      handle.addEventListener('mousedown',function(e){onStart(e.clientY);});
+      window.addEventListener('mousemove',function(e){if(dragging)onMove(e.clientY);});
+      window.addEventListener('mouseup',onEnd);
+    }
+  });
+})();
 
 /* ── TAB SLIDING PILL ── */
 var activeTab='All',cats=['All','Cakes','Fondant','Cupcakes','Brownies','Rusks'];
