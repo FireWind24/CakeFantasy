@@ -265,14 +265,27 @@ section{padding:5rem 1.5rem}
 @media(hover:hover){
   .product-card:hover .product-peek{opacity:1}
 }
-.peek-title{color:#fff;font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:700;margin-bottom:2px}
+.peek-title {
+  color: #fff;
+  font-family: 'Jost', sans-serif;
+  font-size: 1.15rem;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
 .peek-flavors{display:flex;flex-wrap:wrap;gap:5px;justify-content:center}
 .peek-flavor{background:rgba(255,255,255,.14);color:rgba(255,255,255,.9);border-radius:999px;padding:3px 10px;font-size:.7rem;font-weight:500}
 .peek-btn{margin-top:6px;background:var(--pink-deep);color:#fff;border:none;border-radius:999px;padding:8px 20px;font-size:.82rem;font-weight:600;cursor:pointer;font-family:'Jost',sans-serif;transition:background .18s}
 .peek-btn:hover{background:var(--brown)}
 
 .product-body{padding:1.1rem}
-.product-body h3{font-family:'Cormorant Garamond',serif;font-size:1.12rem;font-weight:700;color:var(--text);margin-bottom:.18rem}
+.product-body h3 {
+  font-family: 'Jost', sans-serif;
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 0.25rem;
+  letter-spacing: 0.02em; /* Adds a tiny bit of breathing room */
+}
 .product-price{font-size:.93rem;font-weight:600;color:var(--pink-deep);margin-bottom:.28rem}
 .product-price span{font-size:.75rem;font-weight:400;color:var(--muted)}
 .product-desc{font-size:.8rem;color:var(--muted);line-height:1.58;margin-bottom:.85rem}
@@ -811,7 +824,7 @@ var P=[
   {id:7,cat:'Cakes',img:PHOTOS.pineapple,e:127874,name:'Pineapple Cake',price:1600,unit:'per lb',weightable:true,flavors:[],desc:'Tropical pineapple sponge with light whipped cream.'},
   {id:8,cat:'Fondant',img:PHOTOS.fondant,e:127874,name:'Fondant Theme Cake',price:2000,unit:'starting',weightable:false,flavors:['Simple Design — Rs. 2,000','Medium Design — Rs. 2,200','Elaborate Design — Rs. 2,500'],desc:'Fully custom fondant decorated cake. Price varies by design complexity.'},
   {id:9,cat:'Fondant',img:PHOTOS.fondant_cupcake,e:129361,name:'Fondant Cupcakes (6)',price:2000,unit:'per box',qtyStepper:true,flavors:['Simple Toppers','Character Toppers','Floral Toppers'],desc:'Custom fondant-topped cupcakes with personalised designs.'},
-  {id:10,cat:'Cupcakes',img:PHOTOS.cupcake,e:129361,name:'Cupcakes Box (4)',price:1500,unit:'per box',qtyStepper:true,flavors:['Chocolate','Vanilla','Red Velvet','Strawberry','Caramel','Mixed'],desc:'Six frosted cupcakes in your choice of flavor. Great for gifting.'},
+  {id:10,cat:'Cupcakes',img:PHOTOS.cupcake,e:129361,name:'Cupcakes Box (6)',price:1500,unit:'per box',qtyStepper:true,flavors:['Chocolate','Vanilla','Red Velvet','Strawberry','Caramel','Mixed'],desc:'Six frosted cupcakes in your choice of flavor. Great for gifting.'},
   {id:11,cat:'Brownies',img:PHOTOS.brownie,e:127853,name:'Brownie Slab 8x8',price:1500,unit:'per slab',qtyStepper:true,flavors:['Classic Fudge','Nutella Swirl','Caramel Crunch','Peanut Butter'],desc:'Thick fudgy 8x8 slab. Gooey centre, crackly top.'},
   {id:12,cat:'Rusks',img:PHOTOS.rusks,e:127859,name:'Semolina Cake Rusks',price:1700,unit:'per kg',qtyStepper:true,flavors:[],desc:'Traditional home-made semolina rusks. Crunchy, lightly sweet. Perfect with chai.'}
 ];
