@@ -1360,6 +1360,66 @@
       box-shadow: 0 16px 44px rgba(192, 80, 110, .16)
     }
 
+    /* ── HIGHLIGHTED / FEATURED DEAL CARD ── */
+
+    .deal-card.deal-highlighted {
+      border: 2px solid transparent;
+      background-image: linear-gradient(var(--white), var(--white)), linear-gradient(135deg, var(--pink-deep), var(--gold), var(--pink-deep));
+      background-origin: border-box;
+      background-clip: padding-box, border-box;
+      position: relative;
+      animation: dealGlow 3s ease-in-out infinite alternate
+    }
+
+    @keyframes dealGlow {
+      0%   { box-shadow: 0 4px 24px rgba(192, 80, 110, .12) }
+      100% { box-shadow: 0 8px 38px rgba(192, 80, 110, .28), 0 0 0 1px rgba(212, 168, 67, .15) }
+    }
+
+    .deal-card.deal-highlighted:hover {
+      transform: translateY(-7px) scale(1.01);
+      box-shadow: 0 20px 50px rgba(192, 80, 110, .3), 0 0 0 1px rgba(212, 168, 67, .2)
+    }
+
+    .deal-flyer-img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      display: block;
+      border-bottom: 1px solid rgba(240, 221, 213, .5)
+    }
+
+    .deal-highlight-ribbon {
+      position: absolute;
+      top: 14px;
+      right: -32px;
+      background: linear-gradient(135deg, var(--pink-deep), #e84566);
+      color: #fff;
+      font-size: .62rem;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      padding: 5px 40px;
+      transform: rotate(45deg);
+      box-shadow: 0 2px 8px rgba(192, 80, 110, .35);
+      z-index: 2
+    }
+
+    .deal-timer-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      background: linear-gradient(135deg, #fff5f7, #fdf3dc);
+      border: 1px solid var(--pink);
+      border-radius: 999px;
+      padding: 3px 10px;
+      font-size: .65rem;
+      font-weight: 600;
+      color: var(--pink-deep);
+      margin-bottom: .5rem;
+      letter-spacing: .03em
+    }
+
     .deal-banner-bar {
       height: 5px;
       background: linear-gradient(90deg, var(--pink-deep), var(--gold))
@@ -1382,10 +1442,18 @@
       letter-spacing: .05em
     }
 
+    .deal-card.deal-highlighted .deal-badge {
+      background: linear-gradient(135deg, var(--pink-deep), #e84566);
+      color: #fff;
+      border-color: var(--pink-deep);
+      box-shadow: 0 2px 8px rgba(192, 80, 110, .25)
+    }
+
     .deal-body h3 {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.18rem;
-      font-weight: 700;
+      font-family: 'Jost', sans-serif;
+      font-size: 1.15rem;
+      font-weight: 600;
+      letter-spacing: 0.02em;
       margin-bottom: .35rem;
       color: var(--text)
     }
@@ -1472,6 +1540,17 @@
     @media(max-width:600px) {
       .deals-grid {
         grid-template-columns: 1fr
+      }
+
+      .deal-flyer-img {
+        height: 180px
+      }
+
+      .deal-highlight-ribbon {
+        font-size: .55rem;
+        padding: 4px 36px;
+        top: 12px;
+        right: -34px
       }
     }
 
@@ -2713,6 +2792,144 @@
       }
 
     }
+
+
+    /* ── PROMO AD POPUP ── */
+
+    .promo-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 950;
+      background: rgba(46, 26, 20, .6);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      align-items: center;
+      justify-content: center
+    }
+
+    .promo-overlay.open {
+      display: flex
+    }
+
+    .promo-card {
+      position: relative;
+      max-width: 420px;
+      width: calc(100% - 2rem);
+      border-radius: 22px;
+      overflow: hidden;
+      background: var(--white);
+      box-shadow: 0 24px 80px rgba(46, 26, 20, .35);
+      animation: promoIn .4s cubic-bezier(.4, 0, .2, 1) both
+    }
+
+    @keyframes promoIn {
+      from {
+        transform: scale(.88) translateY(30px);
+        opacity: 0
+      }
+
+      to {
+        transform: scale(1) translateY(0);
+        opacity: 1
+      }
+    }
+
+    .promo-badge {
+      position: absolute;
+      top: 14px;
+      left: 14px;
+      z-index: 2;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: linear-gradient(135deg, var(--pink-deep), #e84566);
+      color: #fff;
+      border-radius: 999px;
+      padding: 6px 14px;
+      font-size: .74rem;
+      font-weight: 700;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      box-shadow: 0 3px 14px rgba(192, 80, 110, .4)
+    }
+
+    .promo-close {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      z-index: 2;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: none;
+      background: rgba(0, 0, 0, .35);
+      color: #fff;
+      cursor: pointer;
+      font-size: .95rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      transition: background .18s, transform .18s
+    }
+
+    .promo-close:hover {
+      background: rgba(0, 0, 0, .55);
+      transform: scale(1.08)
+    }
+
+    .promo-img {
+      display: block;
+      width: 100%;
+      height: auto;
+      cursor: pointer;
+      transition: filter .2s
+    }
+
+    .promo-img:hover {
+      filter: brightness(1.04)
+    }
+
+    .promo-footer {
+      padding: 14px 18px;
+      text-align: center;
+      background: var(--cream)
+    }
+
+    .promo-footer-text {
+      font-size: .76rem;
+      color: var(--muted);
+      font-weight: 500
+    }
+
+    @media(max-width:600px) {
+
+      .promo-card {
+        max-width: 340px;
+        border-radius: 18px
+      }
+
+      .promo-badge {
+        top: 10px;
+        left: 10px;
+        padding: 5px 11px;
+        font-size: .68rem
+      }
+
+      .promo-close {
+        top: 10px;
+        right: 10px;
+        width: 32px;
+        height: 32px
+      }
+
+      .promo-footer {
+        padding: 11px 14px
+      }
+
+    }
   </style>
 
   <script defer src="/_vercel/insights/script.js"></script>
@@ -2834,9 +3051,9 @@
 
       <p class="sec-label">Hot Deals</p>
 
-      <h2 class="sec-title">Sweet Bundles</h2>
+      <h2 class="sec-title">Sweet Bundles & Deals</h2>
 
-      <p class="sec-sub">Curated combos for gifting, celebrations and every sweet moment.</p>
+      <p class="sec-sub">Curated combos for gifting, celebrations and exclusive Mother's Day specials!</p>
 
     </div>
 
@@ -2963,6 +3180,27 @@
 
 
   <div class="toast-stack" id="toast-stack"></div>
+
+
+  <!-- PROMO AD POPUP -->
+
+  <div class="promo-overlay" id="promo-overlay">
+
+    <div class="promo-card">
+
+      <span class="promo-badge">🔥 Hot Deal</span>
+
+      <button class="promo-close" id="promo-close" aria-label="Close">✕</button>
+
+      <img class="promo-img" id="promo-img" src="" alt="Special Deal">
+
+      <div class="promo-footer">
+        <span class="promo-footer-text">Tap image to view deals · Limited time offer</span>
+      </div>
+
+    </div>
+
+  </div>
 
 
   <!-- PRODUCT SHEET -->
@@ -3211,6 +3449,21 @@
       var WA = '923333331984';
 
 
+      /* ── PROMO AD CONFIG ──
+       *  Drop your Canva images into the "Ads" folder,
+       *  then add each filename to the array below.
+       *
+       *  Examples:
+       *    var ADS = ['summer-sale.jpg'];
+       *    var ADS = ['eid-special.png', 'new-flavor.jpg', 'buy1get1.jpg'];
+       *
+       *  If the array is empty → nothing is shown.
+       *  If multiple → one is picked at random each visit.
+       *  If a file is listed but missing → silently skipped.
+       */
+      var ADS = ['deal1-bouquet-cake.png', 'deal2-bento-cake.png', 'deal3-cupcakes-combo.png', 'deal4-crystal-glass.png', 'deal5-cake-bouquet.png', 'deal6-cake-gajray.png'];
+
+
       var PHOTOS = {
 
         choc: 'images/choc.jpg',
@@ -3302,10 +3555,16 @@
 
 
       var DEALS = [
-        { id: 'd1', img: PHOTOS.valentine, badge: 'Valentine Special', title: 'Valentine Sweet Box', desc: 'Surprise your loved one with a rose bouquet paired with a heart-decorated cake.', items: ['1 lb Chocolate or Red Velvet Cake', 'Floral Bouquet Arrangement', 'Custom love message card'], total: 'Rs. 3,600', basePrice: 3600, cakeFlavors: ['Chocolate', 'Red Velvet'], cakeSizes: false, extras: { label: 'Bouquet Style', opts: ['Red Roses', 'Pink Roses', 'Mixed Flowers'] } },
-        { id: 'd2', img: PHOTOS.party, badge: 'Party Bundle', title: 'Cake + Cupcakes Combo', desc: 'Order a cake and get 6 matching cupcakes in the same flavor. Perfect for birthdays.', items: ['1 lb Theme Cake (any flavor)', '6 Matching Cupcakes', 'Decorative box packaging'], total: 'Rs. 4,000', basePrice: 4000, cakeFlavors: CAKE_FLAVORS, cakeSizes: false, extras: null },
-        { id: 'd3', img: PHOTOS.eid, badge: 'Eid Special', title: 'Eid Sweet Hamper', desc: 'Celebrate Eid with an assorted hamper — cake and brownies in a gift box.', items: ['1 lb Cake (any flavor)', '8x8 Brownie Slab', 'Gift hamper box'], total: 'Rs. 4,300', basePrice: 4300, cakeFlavors: CAKE_FLAVORS, cakeSizes: false, extras: { label: 'Brownie Flavor', opts: ['Classic Fudge', 'Nutella Swirl', 'Caramel Crunch'] } },
-        { id: 'd4', img: PHOTOS.hamper, badge: 'Gift Deal', title: 'Gift Hamper Box', desc: 'A gorgeous curated gift box with brownies, cupcakes, a wish card and ribbon packaging.', items: ['6 Cupcakes (choose flavor)', 'Half Brownie Slab', 'Wish card', 'Ribbon packaging'], total: 'Rs. 2,900', basePrice: 2800, cakeFlavors: false, cakeSizes: false, extras: { label: 'Cupcake Flavor', opts: ['Chocolate', 'Vanilla', 'Red Velvet', 'Strawberry', 'Caramel'] } }
+        { id: 'd1', img: PHOTOS.cupcake, flyerImg: 'Ads/deal1-bouquet-cake.png', badge: "Mother's Day Deal 1", title: '2 lb Bouquet Cake', desc: 'A beautiful 2 lb bouquet-shaped cake decorated with pink and cream frosting roses.', items: ['2 lb Bouquet Cake (Vanilla/Chocolate)', 'Elegant rose frosting design', '+Rs. 100 for ribbon & card'], total: 'Rs. 3,800', basePrice: 3800, cakeFlavors: ['Vanilla', 'Chocolate'], cakeSizes: false, extras: { label: 'Add-on', opts: ['Ribbon & Card (+Rs. 100)', 'No extras'] }, highlighted: true, deadline: 'Till 12th May' },
+        { id: 'd2', img: PHOTOS.cupcake, flyerImg: 'Ads/deal2-bento-cake.png', badge: "Mother's Day Deal 2", title: 'Bento Cake — Any Flavor', desc: 'A beautiful bento cake in any flavor — Vanilla, Chocolate, or Red Velvet. Perfect for Mom!', items: ['1 Bento Cake (any flavor)', 'Choice of Vanilla, Chocolate, or Velvet', '+Rs. 100 for ribbon & card'], total: 'Rs. 1,500', basePrice: 1500, cakeFlavors: ['Vanilla', 'Chocolate', 'Red Velvet'], cakeSizes: false, extras: { label: 'Add-on', opts: ['Ribbon & Card (+Rs. 100)', 'No extras'] }, highlighted: true, deadline: 'Till 12th May' },
+        { id: 'd3', img: PHOTOS.cupcake, flyerImg: 'Ads/deal3-cupcakes-combo.png', badge: "Mother's Day Deal 3", title: 'Bento + Cupcakes Combo', desc: '1 Bento Cake + 2 Cupcakes OR 6 Cupcakes — the perfect Mother\'s Day surprise!', items: ['1 Bento + 2 Cupcakes OR 6 Cupcakes', 'Any flavor combination', '+Rs. 100 for ribbon & card'], total: 'Rs. 1,700', basePrice: 1700, cakeFlavors: ['Chocolate', 'Vanilla', 'Red Velvet', 'Strawberry'], cakeSizes: false, extras: { label: 'Combo Choice', opts: ['1 Bento + 2 Cupcakes', '6 Cupcakes'] }, highlighted: true, deadline: 'Till 12th May' },
+        { id: 'd4', img: PHOTOS.caramel, flyerImg: 'Ads/deal4-crystal-glass.png', badge: "Mother's Day Deal 4", title: 'Crystal Glass Dessert', desc: 'Premium & limited crystal glass dessert — an elegant gift for the special woman in your life.', items: ['Crystal Glass Layered Dessert', 'Premium gift packaging', '+Rs. 100 for ribbon & card'], total: 'Rs. 2,000', basePrice: 2000, cakeFlavors: false, cakeSizes: false, extras: { label: 'Add-on', opts: ['Ribbon & Card (+Rs. 100)', 'No extras'] }, highlighted: true, deadline: 'Till 7th May' },
+        { id: 'd5', img: PHOTOS.birthday, flyerImg: 'Ads/deal5-cake-bouquet.png', badge: "Mother's Day Deal 5", title: '2 lb Cake + Fresh Bouquet', desc: 'A stunning 2 lb cake paired with a fresh flowers bouquet — the ultimate Mother\'s Day gift.', items: ['2 lb Cake (any flavor)', 'Fresh Flowers Bouquet', '+Rs. 100 for ribbon & card'], total: 'Rs. 4,450', basePrice: 4450, cakeFlavors: CAKE_FLAVORS, cakeSizes: false, extras: { label: 'Bouquet Style', opts: ['Mixed Gerbera', 'Pink Roses', 'Seasonal Mix'] }, highlighted: true, deadline: 'Till 7th May' },
+        { id: 'd6', img: PHOTOS.strawberry, flyerImg: 'Ads/deal6-cake-gajray.png', badge: "Mother's Day Deal 6", title: '1 lb Cake + Floral Gajray Pair', desc: 'A 1 lb decorated cake with a beautiful fresh floral gajray pair — a thoughtful gift for Mom.', items: ['1 lb Cake (any flavor)', 'Fresh Floral Gajray Pair', '+Rs. 100 for ribbon & card'], total: 'Rs. 2,950', basePrice: 2950, cakeFlavors: CAKE_FLAVORS, cakeSizes: false, extras: { label: 'Add-on', opts: ['Ribbon & Card (+Rs. 100)', 'No extras'] }, highlighted: true, deadline: 'Till 7th May' },
+        { id: 'd_val', img: PHOTOS.valentine, badge: 'Valentine Special', title: 'Valentine Sweet Box', desc: 'Surprise your loved one with a rose bouquet paired with a heart-decorated cake.', items: ['1 lb Chocolate or Red Velvet Cake', 'Floral Bouquet Arrangement', 'Custom love message card'], total: 'Rs. 3,600', basePrice: 3600, cakeFlavors: ['Chocolate', 'Red Velvet'], cakeSizes: false, extras: { label: 'Bouquet Style', opts: ['Red Roses', 'Pink Roses', 'Mixed Flowers'] } },
+        { id: 'd_pty', img: PHOTOS.party, badge: 'Party Bundle', title: 'Cake + Cupcakes Combo', desc: 'Order a cake and get 6 matching cupcakes in the same flavor. Perfect for birthdays.', items: ['1 lb Theme Cake (any flavor)', '6 Matching Cupcakes', 'Decorative box packaging'], total: 'Rs. 4,000', basePrice: 4000, cakeFlavors: CAKE_FLAVORS, cakeSizes: false, extras: null },
+        { id: 'd_eid', img: PHOTOS.eid, badge: 'Eid Special', title: 'Eid Sweet Hamper', desc: 'Celebrate Eid with an assorted hamper — cake and brownies in a gift box.', items: ['1 lb Cake (any flavor)', '8x8 Brownie Slab', 'Gift hamper box'], total: 'Rs. 4,300', basePrice: 4300, cakeFlavors: CAKE_FLAVORS, cakeSizes: false, extras: { label: 'Brownie Flavor', opts: ['Classic Fudge', 'Nutella Swirl', 'Caramel Crunch'] } },
+        { id: 'd_gft', img: PHOTOS.hamper, badge: 'Gift Deal', title: 'Gift Hamper Box', desc: 'A gorgeous curated gift box with brownies, cupcakes, a wish card and ribbon packaging.', items: ['6 Cupcakes (choose flavor)', 'Half Brownie Slab', 'Wish card', 'Ribbon packaging'], total: 'Rs. 2,900', basePrice: 2900, cakeFlavors: false, cakeSizes: false, extras: { label: 'Cupcake Flavor', opts: ['Chocolate', 'Vanilla', 'Red Velvet', 'Strawberry', 'Caramel'] } }
       ];
 
 
@@ -3790,13 +4049,23 @@
 
       DEALS.forEach(function (d) {
 
-        var c = document.createElement('div'); c.className = 'deal-card reveal';
+        var c = document.createElement('div'); c.className = 'deal-card reveal' + (d.highlighted ? ' deal-highlighted' : '');
+
+        var flyerHTML = d.flyerImg ? '<img class="deal-flyer-img" src="' + d.flyerImg + '" alt="' + d.title + '" loading="lazy">' : '<div class="deal-banner-bar"></div>';
+
+        var ribbonHTML = d.highlighted ? '<div class="deal-highlight-ribbon">Limited</div>' : '';
+
+        var timerHTML = d.deadline ? '<span class="deal-timer-badge">⏰ ' + d.deadline + '</span>' : '';
 
         c.innerHTML =
 
-          '<div class="deal-banner-bar"></div>' +
+          ribbonHTML +
+
+          flyerHTML +
 
           '<div class="deal-body">' +
+
+          timerHTML +
 
           '<span class="deal-badge">' + d.badge + '</span>' +
 
@@ -4245,7 +4514,7 @@
 
         curDeal = d; dsFlav = null; dsSize = null; dsExtra = null;
 
-        document.getElementById('ds-img').src = d.img;
+        document.getElementById('ds-img').src = d.flyerImg || d.img;
 
         document.getElementById('ds-title').textContent = d.title;
 
@@ -4279,12 +4548,35 @@
 
         var es = document.getElementById('ds-extras-sec');
 
-        if (d.extras) { es.style.display = ''; document.getElementById('ds-extras-lbl').textContent = d.extras.label; buildChips(document.getElementById('ds-extras'), d.extras.opts, function (v) { dsExtra = typeof v === 'object' ? v.label : v; document.getElementById('ds-err').textContent = ''; }); }
+        if (d.extras) { es.style.display = ''; document.getElementById('ds-extras-lbl').textContent = d.extras.label; buildChips(document.getElementById('ds-extras'), d.extras.opts, function (v) { dsExtra = typeof v === 'object' ? v.label : v; document.getElementById('ds-err').textContent = ''; updateDealPrice(); }); }
 
         else es.style.display = 'none';
 
+        updateDealPrice();
 
         dealOverlay.classList.add('open'); document.body.style.overflow = 'hidden';
+
+      }
+
+      function updateDealPrice() {
+
+        if (!curDeal) return;
+
+        var total = curDeal.basePrice;
+
+        if (dsExtra) {
+
+          var match = dsExtra.match(/\(\+Rs\.\s*(\d+[,0-9]*)\)/i);
+
+          if (match) {
+
+            total += parseInt(match[1].replace(/,/g, ''), 10);
+
+          }
+
+        }
+
+        document.getElementById('ds-price').textContent = 'Rs. ' + total.toLocaleString();
 
       }
 
@@ -4315,7 +4607,21 @@
 
         if (note) msg += '*Notes:* ' + note + '\n';
 
-        msg += '\n*Bundle Price: ' + curDeal.total + '*\n\nPlease confirm availability and I will share my delivery address. Thank you!';
+        var total = curDeal.basePrice;
+        
+        if (dsExtra) {
+
+          var match = dsExtra.match(/\(\+Rs\.\s*(\d+[,0-9]*)\)/i);
+
+          if (match) {
+
+            total += parseInt(match[1].replace(/,/g, ''), 10);
+
+          }
+
+        }
+
+        msg += '\n*Bundle Price: Rs. ' + total.toLocaleString() + '*\n\nPlease confirm availability and I will share my delivery address. Thank you!';
 
         wa(msg); closeDealSheet();
 
@@ -4480,6 +4786,59 @@
 
 
       document.getElementById('footer-wa').onclick = function () { wa('Hello! I would like to place an order from *Cake Fantasy*. Could you please share your current menu and pricing? Thank you!'); };
+
+
+      /* ── PROMO AD POPUP LOGIC ── */
+
+      (function () {
+
+        if (!ADS.length) return;
+
+        var picked = ADS[Math.floor(Math.random() * ADS.length)];
+        var imgPath = 'Ads/' + picked;
+
+        // Probe the image — only show popup if the file actually loads
+        var probe = new Image();
+
+        probe.onload = function () {
+          // Image exists — show popup immediately
+          document.getElementById('promo-img').src = imgPath;
+          document.getElementById('promo-overlay').classList.add('open');
+          document.body.style.overflow = 'hidden';
+        };
+
+        probe.onerror = function () {
+          // Image file missing — silently do nothing
+        };
+
+        probe.src = imgPath;
+
+
+        // Close handlers
+
+        document.getElementById('promo-close').onclick = function (e) {
+          e.stopPropagation();
+          closePromo();
+        };
+
+        document.getElementById('promo-overlay').onclick = function (e) {
+          if (e.target === document.getElementById('promo-overlay')) closePromo();
+        };
+
+        // Clicking the ad image — scrolls to deals section for now
+        document.getElementById('promo-img').onclick = function () {
+          closePromo();
+          document.getElementById('deals').scrollIntoView({ behavior: 'smooth' });
+        };
+
+
+        function closePromo() {
+          document.getElementById('promo-overlay').classList.remove('open');
+          document.body.style.overflow = '';
+        }
+
+      })();
+
 
     })();
   </script>
