@@ -4595,7 +4595,7 @@
 
         var note = document.getElementById('ds-note').value.trim();
 
-        var msg = 'Hello! I would like to order the *' + curDeal.title + '* from Cake Fantasy:\n\n';
+        var msg = 'Hello! I would like to order *' + curDeal.badge + '* (*' + curDeal.title + '*) from Cake Fantasy:\n\n';
 
         msg += '*Bundle includes:*\n' + curDeal.items.map(function (i) { return '- ' + i; }).join('\n') + '\n\n';
 
