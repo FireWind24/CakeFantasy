@@ -3051,9 +3051,9 @@
 
       <p class="sec-label">Hot Deals</p>
 
-      <h2 class="sec-title">Sweet Bundles & Deals</h2>
+      <h2 class="sec-title">Sweet Bundles</h2>
 
-      <p class="sec-sub">Curated combos for gifting, celebrations and exclusive Mother's Day specials!</p>
+      <p class="sec-sub">Curated combos for gifting, celebrations and every sweet moment.</p>
 
     </div>
 
@@ -3461,7 +3461,7 @@
        *  If multiple → one is picked at random each visit.
        *  If a file is listed but missing → silently skipped.
        */
-      var ADS = ['deal1-bouquet-cake.png', 'deal2-bento-cake.png', 'deal3-cupcakes-combo.png', 'deal4-crystal-glass.png', 'deal5-cake-bouquet.png', 'deal6-cake-gajray.png'];
+      var ADS = [];
 
 
       var PHOTOS = {
@@ -3555,12 +3555,6 @@
 
 
       var DEALS = [
-        { id: 'd1', img: PHOTOS.cupcake, flyerImg: 'Ads/deal1-bouquet-cake.png', badge: "Mother's Day Deal 1", title: '2 lb Bouquet Cake', desc: 'A beautiful 2 lb bouquet-shaped cake decorated with pink and cream frosting roses.', items: ['2 lb Bouquet Cake (Vanilla/Chocolate)', 'Elegant rose frosting design', '+Rs. 100 for ribbon & card'], total: 'Rs. 3,800', basePrice: 3800, cakeFlavors: ['Vanilla', 'Chocolate'], cakeSizes: false, extras: { label: 'Add-on', opts: ['Ribbon & Card (+Rs. 100)', 'No extras'] }, highlighted: true, deadline: 'Till 7th May' },
-        { id: 'd2', img: PHOTOS.cupcake, flyerImg: 'Ads/deal2-bento-cake.png', badge: "Mother's Day Deal 2", title: 'Bento Cake — Any Flavor', desc: 'A beautiful bento cake in any flavor — Vanilla, Chocolate, or Red Velvet. Perfect for Mom!', items: ['1 Bento Cake (any flavor)', 'Choice of Vanilla, Chocolate, or Velvet', '+Rs. 100 for ribbon & card'], total: 'Rs. 1,500', basePrice: 1500, cakeFlavors: ['Vanilla', 'Chocolate', 'Red Velvet'], cakeSizes: false, extras: { label: 'Add-on', opts: ['Ribbon & Card (+Rs. 100)', 'No extras'] }, highlighted: true, deadline: 'Till 12th May' },
-        { id: 'd3', img: PHOTOS.cupcake, flyerImg: 'Ads/deal3-cupcakes-combo.png', badge: "Mother's Day Deal 3", title: 'Bento + Cupcakes Combo', desc: '1 Bento Cake + 2 Cupcakes OR 6 Cupcakes — the perfect Mother\'s Day surprise!', items: ['1 Bento + 2 Cupcakes OR 6 Cupcakes', 'Any flavor combination', '+Rs. 100 for ribbon & card'], total: 'Rs. 1,700', basePrice: 1700, cakeFlavors: ['Chocolate', 'Vanilla', 'Red Velvet', 'Strawberry'], cakeSizes: false, extras: { label: 'Combo Choice', opts: ['1 Bento + 2 Cupcakes', '6 Cupcakes'] }, highlighted: true, deadline: 'Till 12th May' },
-        { id: 'd4', img: PHOTOS.caramel, flyerImg: 'Ads/deal4-crystal-glass.png', badge: "Mother's Day Deal 4", title: 'Crystal Glass Dessert', desc: 'Premium & limited crystal glass dessert — an elegant gift for the special woman in your life.', items: ['Crystal Glass Layered Dessert', 'Premium gift packaging', '+Rs. 100 for ribbon & card'], total: 'Rs. 2,000', basePrice: 2000, cakeFlavors: false, cakeSizes: false, extras: { label: 'Add-on', opts: ['Ribbon & Card (+Rs. 100)', 'No extras'] }, highlighted: true, deadline: 'Till 7th May' },
-        { id: 'd5', img: PHOTOS.birthday, flyerImg: 'Ads/deal5-cake-bouquet.png', badge: "Mother's Day Deal 5", title: '2 lb Cake + Fresh Bouquet', desc: 'A stunning 2 lb cake paired with a fresh flowers bouquet — the ultimate Mother\'s Day gift.', items: ['2 lb Cake (any flavor)', 'Fresh Flowers Bouquet', '+Rs. 100 for ribbon & card'], total: 'Rs. 4,450', basePrice: 4450, cakeFlavors: CAKE_FLAVORS, cakeSizes: false, extras: { label: 'Bouquet Style', opts: ['Mixed Gerbera', 'Pink Roses', 'Seasonal Mix'] }, highlighted: true, deadline: 'Till 7th May' },
-        { id: 'd6', img: PHOTOS.strawberry, flyerImg: 'Ads/deal6-cake-gajray.png', badge: "Mother's Day Deal 6", title: '1 lb Cake + Floral Gajray Pair', desc: 'A 1 lb decorated cake with a beautiful fresh floral gajray pair — a thoughtful gift for Mom.', items: ['1 lb Cake (any flavor)', 'Fresh Floral Gajray Pair', '+Rs. 100 for ribbon & card'], total: 'Rs. 2,950', basePrice: 2950, cakeFlavors: CAKE_FLAVORS, cakeSizes: false, extras: { label: 'Add-on', opts: ['Ribbon & Card (+Rs. 100)', 'No extras'] }, highlighted: true, deadline: 'Till 7th May' },
         { id: 'd_val', img: PHOTOS.valentine, badge: 'Valentine Special', title: 'Valentine Sweet Box', desc: 'Surprise your loved one with a rose bouquet paired with a heart-decorated cake.', items: ['1 lb Chocolate or Red Velvet Cake', 'Floral Bouquet Arrangement', 'Custom love message card'], total: 'Rs. 3,600', basePrice: 3600, cakeFlavors: ['Chocolate', 'Red Velvet'], cakeSizes: false, extras: { label: 'Bouquet Style', opts: ['Red Roses', 'Pink Roses', 'Mixed Flowers'] } },
         { id: 'd_pty', img: PHOTOS.party, badge: 'Party Bundle', title: 'Cake + Cupcakes Combo', desc: 'Order a cake and get 6 matching cupcakes in the same flavor. Perfect for birthdays.', items: ['1 lb Theme Cake (any flavor)', '6 Matching Cupcakes', 'Decorative box packaging'], total: 'Rs. 4,000', basePrice: 4000, cakeFlavors: CAKE_FLAVORS, cakeSizes: false, extras: null },
         { id: 'd_eid', img: PHOTOS.eid, badge: 'Eid Special', title: 'Eid Sweet Hamper', desc: 'Celebrate Eid with an assorted hamper — cake and brownies in a gift box.', items: ['1 lb Cake (any flavor)', '8x8 Brownie Slab', 'Gift hamper box'], total: 'Rs. 4,300', basePrice: 4300, cakeFlavors: CAKE_FLAVORS, cakeSizes: false, extras: { label: 'Brownie Flavor', opts: ['Classic Fudge', 'Nutella Swirl', 'Caramel Crunch'] } },
