@@ -3461,7 +3461,7 @@
        *  If multiple → one is picked at random each visit.
        *  If a file is listed but missing → silently skipped.
        */
-      var ADS = [];
+      var ADS = ['deal1-bouquet-cake.png', 'deal2-bento-cake.png', 'deal3-cupcakes-combo.png', 'deal4-crystal-glass.png', 'deal5-cake-bouquet.png', 'deal6-cake-gajray.png'];
 
 
       var PHOTOS = {
@@ -4043,13 +4043,13 @@
 
       DEALS.forEach(function (d) {
 
-        var c = document.createElement('div'); c.className = 'deal-card reveal' + (d.highlighted ? ' deal-highlighted' : '');
+        var c = document.createElement('div'); c.className = 'deal-card reveal';
 
-        var flyerHTML = d.flyerImg ? '<img class="deal-flyer-img" src="' + d.flyerImg + '" alt="' + d.title + '" loading="lazy">' : '<div class="deal-banner-bar"></div>';
+        var flyerHTML = '<div class="deal-banner-bar"></div>';
 
-        var ribbonHTML = d.highlighted ? '<div class="deal-highlight-ribbon">Limited</div>' : '';
+        var ribbonHTML = '';
 
-        var timerHTML = d.deadline ? '<span class="deal-timer-badge">⏰ ' + d.deadline + '</span>' : '';
+        var timerHTML = '';
 
         c.innerHTML =
 
@@ -4285,7 +4285,7 @@
 
         addToCart(curItem, varLbl, note, modalQty, effPrice);
 
-        Object.keys(fbtChecked).forEach(function (sid) { if (fbtChecked[sid]) { var sp = P.find(function (x) { return x.id === +sid; }); if (sp) addToCart(sp, '', '', 1, sp.price); } });
+        Object.keys(fbtChecked).forEach(function (sid) { if (fbtChecked[sid]) { var sp = P.find(function (x) { return x.id === +sid; }); if (sp) { var fv = sp.weightable ? '1 lb' : ''; addToCart(sp, fv, '', 1, sp.price); } } });
 
         closeProdSheet();
 
@@ -4556,21 +4556,7 @@
 
         if (!curDeal) return;
 
-        var total = curDeal.basePrice;
-
-        if (dsExtra) {
-
-          var match = dsExtra.match(/\(\+Rs\.\s*(\d+[,0-9]*)\)/i);
-
-          if (match) {
-
-            total += parseInt(match[1].replace(/,/g, ''), 10);
-
-          }
-
-        }
-
-        document.getElementById('ds-price').textContent = 'Rs. ' + total.toLocaleString();
+        document.getElementById('ds-price').textContent = 'Rs. ' + curDeal.basePrice.toLocaleString();
 
       }
 
@@ -4602,18 +4588,6 @@
         if (note) msg += '*Notes:* ' + note + '\n';
 
         var total = curDeal.basePrice;
-        
-        if (dsExtra) {
-
-          var match = dsExtra.match(/\(\+Rs\.\s*(\d+[,0-9]*)\)/i);
-
-          if (match) {
-
-            total += parseInt(match[1].replace(/,/g, ''), 10);
-
-          }
-
-        }
 
         msg += '\n*Bundle Price: Rs. ' + total.toLocaleString() + '*\n\nPlease confirm availability and I will share my delivery address. Thank you!';
 
@@ -4685,7 +4659,7 @@
 
             '<div class="ci-meta">' + (item.variant || item.product.unit) + (item.note ? ' · ' + item.note : '') + '</div>' +
 
-            '<div class="ci-price-row"><span class="ci-price">' + fmt(lt) + '</span><span class="ci-base-price">' + fmt(item.unitPrice) + ' each</span></div>' +
+            '<div class="ci-price-row"><span class="ci-price">' + fmt(lt) + '</span><span class="ci-base-price">' + (item.product.weightable ? fmt(item.product.price) + '/lb' : fmt(item.unitPrice) + ' each') + '</span></div>' +
 
             '<div class="ci-actions">' +
 
